@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Sudipto Chowdhury">
+
+    <title>Lembretes Area Técnica</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Virtual</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="#">Home</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="page-header-extended">
+            <h2 class="page-title">CONTROLE DE TAREFAS ÁREA TÉCNICA</h2>
+            <img class="img-logo" src="img/logo_gear">
+        </div>
+
+        <div class="starter-template">
+
+            <div class="info-table-header-block">
+                <input type="text" placeholder="Pesquisar" id="member_search" onkeyup="getTableData()">
+                <button type="button" class="btn btn-primary add-new-button" data-toggle="modal" data-target="#addnewModal">
+                    Adicionar
+                </button>
+            </div>
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="addnewModal" tabindex="-1" role="dialog" aria-labelledby="addnewModalTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="addnewModalTitle">Inserir Informação</h4>
+                        </div>
+
+                        <!-- User Create Modal Start -->
+
+                        <div class="modal-body">
+                            <form id="input_form" onsubmit="saveMemberInfo(); return false;">
+                                <div class="form-group">
+                                    <label for="first_name"><i class="fa fa-user-circle"></i>Técnico
+                                        <span class="required-field">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" placeholder="Nome do Técnico" id="first_name" required />
+                                </div>
+                                <div class="form-group div-select">
+                                    <label for="last_name"><i class="fas fa-building"></i>Condomínio
+                                        <span class="required-field">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" placeholder="Nome do Condomínio" id="last_name" required />
+                                      
+                                    
+                                </div>
+                                <div class="form-group div-select ">
+                                    <label for="email">Prioridade
+                                        <span class="required-field">*</span>
+                                    </label>
+                                    <select id="email" name="email">
+                                        <option value="Mínima">Mínima</option>
+                                        <option value="Baixa">Baixa</option>
+                                        <option value="Moderada">Moderada</option>
+                                        <option value="Absoluta">Absoluta</option>
+                                      </select>
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <label for="d_o_b"><i class="far fa-clock"></i>Data
+                                        <span class="required-field">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" placeholder="Data para execução" id="d_o_b" required onkeypress="return false;"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="designation"><i class="fas fa-wrench"></i>Tarefa
+                                        <span class="required-field">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" placeholder="Tipo de Tarefa" id="designation" required />
+                                </div>
+
+                                <div class="modal-footer-extended">
+                                    <button class="btn btn-primary">Criar</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- User Create Modal End -->
+                    </div>
+                </div>
+            </div>
+
+            <table id="member_table" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>
+                            <a href="#" onclick="sortBy('first_name')"><i class="fa fa-user-circle"></i>Ténico</a>
+                            <i class="fa fa-sort"></i>
+                        </th>
+                        <th>
+                            <a href="#" onclick="sortBy('last_name')"><i class="fas fa-building"></i>Condomínio</a>
+                            <i class="fa fa-sort"></i>
+                        </th>
+                        <th>
+                            <a href="#" onclick="sortBy('email')">Prioridade</a>
+                            <i class="fa fa-sort"></i>
+                        </th>
+                        <th>
+                            <a href="#" onclick="sortBy('d_o_b')"><i class="far fa-clock"></i>Data</a>
+                            <i class="fa fa-sort"></i>
+                        </th>
+                        <th>
+                            <a href="#" onclick="sortBy('designation')"><i class="fas fa-wrench"></i>Tarefas</a>
+                            <i class="fa fa-sort"></i>
+                            </i>
+                        </th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+            </table>
+
+            <div class="show-table-info hide">
+                <div class="alert alert-info center">
+                    <strong>Nenhum dado encontrado, insira alguns dados</strong>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- User Information Modal Start -->
+
+    <div id="show_user_info">
+        <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showModalTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="showModal">Informações</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="show_first_name"><i class="fa fa-user-circle"></i>Técnico</label>
+                            <input type="text" class="form-control" id="show_first_name" value="" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="show_last_name"><i class="fas fa-building"></i>Condomínio</label>
+                            <input type="text" class="form-control" id="show_last_name" value="" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="show_email">Prioridade</label>
+                            <input type="email" class="form-control" id="show_email" value="" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="show_d_o_b"><i class="far fa-clock"></i>Data</label>
+                            <input type="text" class="form-control" id="show_d_o_b" value="" disabled>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="show_designation"><i class="fas fa-wrench"></i>Tarefa</label>
+                            <input type="text" class="form-control" id="show_designation" value="" disabled>
+                        </div>
+
+                        <div class="modal-footer-extended">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Information Modal End -->
+
+
+    <!-- User Edit Modal Start -->
+
+    <div id="show_user_info">
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="editModal">Editar Informações</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form onsubmit="updateMemberData(); return false;">
+                            <div class="form-group">
+                                <label for="edit_first_name"><i class="fa fa-user-circle"></i>Técnico
+                                    <span class="required-field">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="edit_first_name" value="" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="edit_last_name"><i class="fas fa-building"></i>Condomínio
+                                    <span class="required-field">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="edit_last_name" value="" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="edit_email">Prioridade
+                                    <span class="required-field">*</span>
+                                </label>
+                                <select id="edit_email" name="email">
+                                    <option value="Mínima">Mínima</option>
+                                    <option value="Baixa">Baixa</option>
+                                    <option value="Moderada">Moderada</option>
+                                    <option value="Absoluta">Absoluta</option>
+                                  </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit_d_o_b"><i class="far fa-clock"></i>Data
+                                    <span class="required-field">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="edit_d_o_b" value="" required onkeypress="return false;"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="edit_designation"><i class="fas fa-wrench"></i>Tarefa
+                                    <span class="required-field">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="edit_designation" value="" required />
+                            </div>
+
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" id="member_id">
+                            </div>
+
+                            <div class="modal-footer-extended">
+                                <button class="btn btn-success">Atualizar</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Edit Modal End -->
+
+
+    <!-- Delete Confirmation Dialog Start -->
+
+    <div id="show_user_info">
+        <div class="modal fade" id="deleteDialog" tabindex="-1" role="dialog" aria-labelledby="deleteDialogTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="deleteDialog">Atenção!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4>Tem certeza de que deseja excluir estas informações?</h4>
+                        <input type="hidden" id="deleted-member-id" value="">
+                        <div class="modal-footer-extended">
+                            <button class="btn btn-danger" onclick="deleteMemberData()">Deletar</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Dialog End -->
+
+    <!--Footer-->
+    <footer class="footer">
+        <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>Copyright © 2020| de <a href="#">Afonso Ramon</a> Todos os direitos reservados.</p>
+                        <p>@afonso1907@hotmail.com</p>
+                    </div>
+                </div>
+            </div>
+    </footer>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
