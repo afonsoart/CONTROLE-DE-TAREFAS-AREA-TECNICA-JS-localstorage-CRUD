@@ -1,5 +1,5 @@
 # CONTROLE-DE-TAREFAS-AREA-TECNICA-JS-localstorage-CRUD
-O controle de tarefas da área técnico sugiu de uma necessidade para melhor atender as demandas e priorídades de requisições dos condomínios de uma portaria remota.
+O controle de tarefas da área técnico surgiu de uma necessidade para melhor atender as demandas e prioridades de requisições dos condomínios feito especificamente para uma portaria remota.
 ![Alt text](img/Controle-de-Tarefas-img.PNG?raw=true "Title")
 
 # Create
